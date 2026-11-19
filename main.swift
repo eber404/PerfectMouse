@@ -252,7 +252,7 @@ final class PerfectMouseEngine: ObservableObject {
 
         setLatched(true)
         fixCount += 1
-        log("CTRL LATCH DETECTED after \(String(format: "%.1f", Date().timeIntervalSince(since)))s — cleaning")
+        log("CTRL LATCH DETECTED after \(String(format: "%.1f", Date().timeIntervalSince(since)))s, cleaning")
         clearStuckControl()
     }
 
@@ -505,37 +505,37 @@ struct ContentView: View {
             if let requirement {
                 PermissionPrompt(requirement: requirement, onOpenPrivacy: onOpenPrivacy)
             } else {
-                Text("Rolagem")
+                Text("Scrolling")
                     .font(.caption.weight(.semibold))
                     .foregroundStyle(.secondary)
 
                 DeviceToggleRow(
                     title: "Mouse",
-                    subtitle: "Rolagem natural",
+                    subtitle: "Natural scrolling",
                     isOn: $preferences.mouseNaturalScrolling
                 )
 
                 DeviceToggleRow(
                     title: "Trackpad",
-                    subtitle: "Rolagem natural",
+                    subtitle: "Natural scrolling",
                     isOn: $preferences.trackpadNaturalScrolling
                 )
 
                 Divider()
 
-                Text("Correção do Ctrl travado")
+                Text("Stuck Ctrl fix")
                     .font(.caption.weight(.semibold))
                     .foregroundStyle(.secondary)
 
                 DeviceToggleRow(
-                    title: "Ativo",
-                    subtitle: "Correções: \(engine.fixCount)",
+                    title: "Enabled",
+                    subtitle: "Fixes: \(engine.fixCount)",
                     isOn: $preferences.ctrlFixEnabled
                 )
             }
 
             HStack {
-                Button("Abrir log") {
+                Button("Open log") {
                     NSWorkspace.shared.open(URL(fileURLWithPath: NSHomeDirectory() + "/Library/Logs/PerfectMouse.log"))
                 }
                 .buttonStyle(.plain)
@@ -543,7 +543,7 @@ struct ContentView: View {
 
                 Spacer()
 
-                Button("Sair", action: onQuit)
+                Button("Quit", action: onQuit)
                     .buttonStyle(.plain)
             }
             .font(.caption)
@@ -565,11 +565,11 @@ private struct PermissionPrompt: View {
                 .padding(.top, 1)
 
             VStack(alignment: .leading, spacing: 8) {
-                Text("Autorize o PerfectMouse em Acessibilidade")
+                Text("Allow PerfectMouse in Accessibility")
                     .font(.caption.weight(.semibold))
                     .foregroundStyle(.secondary)
 
-                Button("Abrir Ajustes") {
+                Button("Open Settings") {
                     onOpenPrivacy(requirement)
                 }
                 .buttonStyle(.plain)
@@ -634,8 +634,8 @@ private struct StatusPill: View {
 
     private var text: String {
         switch state {
-        case .active: return "Ativo"
-        case .unavailable: return "Sem permissão"
+        case .active: return "Running"
+        case .unavailable: return "Needs permission"
         }
     }
 }

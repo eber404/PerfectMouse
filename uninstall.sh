@@ -19,4 +19,4 @@ defaults delete "$BUNDLE_ID" 2>/dev/null || true
 
 tccutil reset Accessibility "$BUNDLE_ID" >/dev/null 2>&1 || true
 
-echo "PerfectMouse removido."
+echo "PerfectMouse removed."

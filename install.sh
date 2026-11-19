@@ -9,7 +9,7 @@ APP_DIR="$HOME/Applications"
 AGENT="$HOME/Library/LaunchAgents/$BUNDLE_ID.plist"
 
 if ! xcode-select -p >/dev/null 2>&1; then
-    echo "Xcode Command Line Tools não encontrados. Rode: xcode-select --install"
+    echo "Xcode Command Line Tools not found. Run: xcode-select --install"
     exit 1
 fi
 
@@ -41,8 +41,8 @@ launchctl load "$AGENT"
 
 sleep 1
 echo
-echo "Instalado em $APP_DIR/$APP_NAME.app"
-echo "Inicia sozinho no login: $AGENT"
+echo "Installed to $APP_DIR/$APP_NAME.app"
+echo "Starts at login: $AGENT"
 echo
-echo "Se o macOS não pedir a permissão, abra o ícone na barra de menus"
-echo "e clique em 'Abrir Ajustes' para autorizar em Acessibilidade."
+echo "If macOS does not prompt for permission, open the menu bar icon"
+echo "and click 'Open Settings' to allow it under Accessibility."
